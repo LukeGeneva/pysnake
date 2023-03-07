@@ -1,5 +1,4 @@
 import pygame
-from pygame.locals import *
 from apple import Apple
 from snake import Snake
  
@@ -24,7 +23,9 @@ class Game:
         self.snake.update(pygame.time.get_ticks())
 
     def on_render(self):
-        pygame.draw.rect(self._display_surf, pygame.Color(0, 0, 0), pygame.Rect(0, 0, self.width, self.height))
+        if self._display_surf == None: return
+        pygame.draw.rect(self._display_surf, pygame.Color(0, 0, 0),
+                         pygame.Rect(0, 0, self.width, self.height))
         self.apple.draw(self._display_surf)
         self.snake.draw(self._display_surf)
         pygame.display.update()
